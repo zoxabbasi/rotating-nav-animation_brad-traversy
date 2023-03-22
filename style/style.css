@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #333;
+    color: #222;
+
+    /* Only hides the scroll bar on the X-axis */
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fafafa;
+
+    /* The transform origin by default is center, we want it to rotate the container from the top left */
+    transform-origin: top left;
+
+    /* We want a transition on it, so it doesn't just flick to the transform position but we want it to be smooth */
+    transition: transform .5s linear;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 50px;
+}
+
+.container.show-nav {
+    transform: rotate(-20deg);
+}
+
+.circle-container {
+
+    /* The circle will stay there no matter what */
+    position: fixed;
+
+    /* To position the circle a little off the screen */
+    top: -100px;
+    left: -100px;
+}
+
+.circle {
+    background-color: #ff7979;
+
+    /* It is a full circle but half of it off the screen */
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+
+    /* We will position it relative, to position the buttons inside absolute */
+    position: relative;
+    transition: transform 0.5s linear;
+
+}
+
+.circle button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100px;
+    background: transparent;
+    border: 0;
+    font-size: 26px;
+    color: #fff;
+}
+
+.circle button:focus {
+    outline: none;
+}
+
+/* This is the button you will see initailly */
+/* This is relative to the circle */
+.circle button#open {
+    left: 60%;
+}
+
+.circle button#close {
+    top: 60%;
+    transform: rotate(90deg);
+    transform-origin: top left;
+}
+
+/* /*  When the container has show-nav class, then do this with .circle */
+.container.show-nav .circle{
+    transform:rotate(-70deg);
+}
+
+/*  When the container has show-nav class, then take the direct nav li's after that and bring them to view */
+.container.show-nav+nav li {
+    transform: translateX(0);
+
+    /* To add a delay in transition */
+    transition-delay: 0.3s;
+}
+
+nav {
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style-type: none;
+    padding-left: 30px;
+}
+
+nav ul li {
+    text-transform: uppercase;
+    color: #fff;
+    margin: 40px 0;
+
+    /* To move it left on X-axis, away from the screen */
+    transform: translateX(-100%);
+    transition: tranform 0.4s ease-in;
+}
+
+nav ul li i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+nav ul li+li {
+    margin-left: 15px;
+    transform: translateX(-150%);
+}
+
+nav ul li+li+li {
+    margin-left: 30px;
+    transform: translateX(-200%);
+}
+
+.content img {
+    width: 100vh;
+}
+
+.content {
+
+    /* The content won't cross the max-width mark */
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.content h1 {
+    margin: 0;
+}
+
+.content small {
+    color: #555;
+    font-style: italic;
+}
+
+.content p {
+    color: #333;
+    line-height: 1.5;
+}
+
+.content h3 {
+    margin: 25px 0;
+}
